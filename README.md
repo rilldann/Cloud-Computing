@@ -33,7 +33,6 @@ Instal Flask:
 Jalankan aplikasi Flask:
     ```bash
     python app.py
-    Akses aplikasi melalui browser:
     ```
 6. Akses aplikasi flash di browser
     ```bash
