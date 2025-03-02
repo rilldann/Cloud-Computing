@@ -41,11 +41,31 @@ Jalankan aplikasi Flask:
 
 # Modul Praktikum 03 - Membuat Aplikasi Frontend Sederhana dengan React + Vite
 
-1. Berpindah ke direktori Frontend dan my-app-react dengan perintah
+1. Berpindah ke direktori Frontend serta membuat proyek React baru dengan perintah
     ```bash
-    cd frontend/my-app-react
+    cd frontend
+    npm create vite@latest my-react-app -- --template react
     ```
+
 2. Menjalankan React dan Vite menggunakan perintah
     ```bash
     npm run dev
     ```    
+
+3. Membuat halaman sederhana pada src/App dengan code
+    ```bash
+    import React from 'react';
+
+    function App() {
+    return (
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <h1>Hello from React + Vite!</h1>
+        <p>This is a simple React app built with Vite.</p>
+        </div>
+    );
+    }
+
+    export default App;
+    ```
+4. Hasil tampilan jika dilihat pada browser
+   <img src="asset/hasil prak 3.png" alt="Tampilan Aplikasi" width="700px">
