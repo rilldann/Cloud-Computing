@@ -211,3 +211,36 @@ python app.py
 ```
 - Gunakan Postman untuk mengetes endpoint
    <img src="asset/getpostman.png" alt="Tampilan Aplikasi" width="700px">
+
+
+# Modul Praktikum 06 - Membuat Dockerfile untuk Flask
+
+1. Membuat file pada folder backend dengan nama Dockerfile dengan isi
+```bash
+# backend/Dockerfile
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+CMD ["python", "app.py"]
+```
+
+2. tambahkan flask, flask-cors, psycopg2-binary pada file requirements.txt
+
+3. Jalankan perintah berikut untuk membangun image Docker:
+```bash
+docker build -t flask-backend:1.0 .
+```
+
+4. Run Docker Container
+```bash
+docker run -d -p 5000:5000 --name flask-container flask-backend:1.0
+```
+
+5. Melihat hasil pada url http://localhost:5000

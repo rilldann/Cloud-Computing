@@ -16,7 +16,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Hello from Flask!"})
+    return jsonify({"message": "Hello, Flask is running inside Docker"})
 
 @app.route('/api/data')
 def get_data():
