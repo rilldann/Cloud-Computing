@@ -244,3 +244,43 @@ docker run -d -p 5000:5000 --name flask-container flask-backend:1.0
 ```
 
 5. Melihat hasil pada url http://localhost:5000
+
+# Modul Praktikum 07 - Dockerization Bagian 2 (Membuat Dockerfile untuk React dengan Vite)
+
+1. Membuat file dengan nama Dockerfile pada folder frontend/my-react-app
+```bash
+FROM node:14-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+FROM nginx:stable-alpine
+COPY --from=0 /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+2. Build Docker Image dengan cara
+```bash
+npm run build
+
+#lalu jalankan perintah
+
+docker build -t react-frontend-vite:1.0 .
+```
+
+3. Run Docker Container
+dengan menjalankan perintah
+```bash
+docker run -d -p 3000:80 --name react-container-vite react-frontend-vite:1.0
+```
+
+4. Kemudian buka browser dengan alamat http://localhost:3000/
+<img src="asset/7.png" alt="Tampilan Aplikasi" width="700px">
