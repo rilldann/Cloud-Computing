@@ -1,13 +1,14 @@
+import os
 import psycopg2
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 def get_db_connection():
     conn = psycopg2.connect(
-        host="localhost",
-        database="test_db",
-        user="student",
-        password="1"
+        host=os.environ.get("DB_HOST", "localhost"),
+        database=os.environ.get("DB_NAME", "test_db"),
+        user=os.environ.get("DB_USER", "student"),
+        password=os.environ.get("DB_PASSWORD", "password")
     )
     return conn
 
@@ -31,9 +32,7 @@ def get_items():
     cur.close()
     conn.close()
 
-    items = []
-    for row in rows:
-        items.append({"id": row[0], "name": row[1], "description": row[2]})
+    items = [{"id": row[0], "name": row[1], "description": row[2]} for row in rows]
     return jsonify(items)
 
 @app.route('/api/items', methods=['POST'])
